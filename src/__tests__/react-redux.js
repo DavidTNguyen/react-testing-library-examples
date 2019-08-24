@@ -68,6 +68,9 @@ function reducer(state = {count: 0}, action) {
 // this is a handy function that I normally make available for all my tests
 // that deal with connected components.
 // you can provide initialState or the entire store that the ui is rendered with
+// You may have noticed that in the "after" function declaration there's an = {} after the second parameter (which is destructured). 
+// What is this doing? We're setting the "default" value for the second parameter to be an empty object. 
+// Why are we doing it? If nothing is passed in as the second parameter, the value of it would be undefined. Now normally this isn't a problem, except that we're attempting to destructure variables from the second parameter, and you obviously can't destructure anything from undefined.
 function renderWithRedux(
   ui,
   {initialState, store = createStore(reducer, initialState)} = {},
